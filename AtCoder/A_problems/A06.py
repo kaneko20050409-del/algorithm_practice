@@ -68,3 +68,31 @@ for i in range(n):
 
 for i in range(q):
     print(s[r[i]] - s[l[i]-1])
+
+
+# プロ
+# 解説　https://www.notion.so/A06-350c6f48ff5980f6934efc29fbb6254a
+import sys
+
+def solve():
+    data = iter(sys.stdin.read().split())
+
+    N = int(next(data))
+    Q = int(next(data))
+    A = [int(next(data)) for _ in range(N)]
+
+    S = [0]*(N + 1)
+    for i in range(N):
+        S[i+1] = S[i] + A[i]
+    
+    for _ in range(Q):
+        l = int(next(data))
+        r = int(next(data))
+        print(S[r] - S[l-1])
+
+    
+
+
+    
+if __name__ == '__main__':
+    solve()

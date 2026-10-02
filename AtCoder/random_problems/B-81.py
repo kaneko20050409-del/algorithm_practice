@@ -23,3 +23,17 @@ for x in range(10):
       break
 
 print(ans)
+
+
+n = int(input())
+
+Z = [1,2,3,4,5,6,7,8,9]
+ans = 'No'
+
+for i in range(1,10):
+  b = n/i
+  if b in Z:
+    ans = 'Yes'
+    break
+
+print(ans)

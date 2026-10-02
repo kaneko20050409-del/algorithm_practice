@@ -24,7 +24,7 @@
 
 import sys
 
-def solve():
+def solve_2():
     data = iter(sys.stdin.read().split())
 
     N = int(next(data))
@@ -42,6 +42,31 @@ def solve():
         r = int(next(data))
         print(acc[r]-acc[l])
 
+
+# if __name__ == '__main__':
+#     solve_2()
+
+
+import sys
+
+def solve():
+
+    data = sys.stdin.read().split()
+
+    N = int(data[0])
+    Q = int(data[1])
+    S = list(data[2])
+
+    # 累積和
+    acc = [0] * (N+1)
+
+    for i in range(1,N):
+        acc[i+1] = acc[i] + (S[i] == 'C' and S[i-1] == 'A')
+
+    for i in range(Q):
+        l = int(data[2*i+3])
+        r = int(data[2*i+4])
+        print(acc[r]-acc[l])
 
 if __name__ == '__main__':
     solve()

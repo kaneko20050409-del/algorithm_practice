@@ -1,6 +1,6 @@
 import sys
 
-def solve():
+def solve_2():
 
     data = iter(sys.stdin.read().split())
 
@@ -67,7 +67,7 @@ def solve():
     
 
 if __name__ == '__main__':
-    solve()
+    solve_2()
 
 
 # 最速コード
@@ -102,3 +102,74 @@ def solve():
 
 if __name__ == '__main__':
     solve()
+
+
+def solve_3():
+
+    data = sys.stdin.read().split()
+
+    N = int(data[0])
+    A = []
+    B = []
+    C = []
+    for i in range(N):
+        A.append(int(data[i+1]))
+        B.append(int(data[i+1+N]))
+        C.append(int(data[i+1+N*2]))
+
+    #2分探索アルゴリズム
+    def bis(num,lst):
+        l_len = len(lst)
+
+    
+
+
+if __name__ == '__main__':
+    solve_3()
+
+
+# めぐる式２分探索
+# left:絶対に値が存在しない区間　right: 絶対に値が存在する区間
+# abs(left-right)=1 になるまでループ
+def upper_binary_search(lst, target):
+    left = 0
+    right = len(lst)
+    
+    while left < right:  
+        mid = (left + right) // 2
+        if target > lst[mid]:
+            left = mid + 1
+        else:
+            right = mid
+    return left # target未満の個数を返す
+
+def lower_binary_search(lst, target):
+    left = 0
+    right = len(lst)
+
+    while left < right:
+        mid = (left + right) // 2
+        if target >= lst[mid]:
+            left = mid + 1
+        else:
+            right = mid
+    return right # targetより大きい値となるインデックスを返す
+
+def solves():
+    data = sys.stdin.read().split()
+    n = int(data[0])
+    A = sorted(map(int,data[1:n+1]))
+    B = sorted(map(int,data[n+1:2*n+1]))
+    C = sorted(map(int,data[2*n+1:3*n+1]))
+    result = 0
+    for i in range(n):
+        middle = B[i]
+        upper_num = upper_binary_search(A,middle)
+        lower = lower_binary_search(C,middle)
+        lower_num = n - lower
+        result += lower_num * upper_num
+
+    return print(result)
+
+if __name__ == '__main__':
+    solves()
